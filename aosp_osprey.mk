@@ -15,14 +15,27 @@
 
 $(call inherit-product, device/motorola/osprey/full_osprey.mk)
 
+# Inherit some common AOSP stuff.
+TARGET_ARCH := arm
+TARGET_DENSITY := xhdpi
+TARGET_BOOT_ANIMATION_RES := 720
+
+# Inherit common Android Go configurations
+#$(call inherit-product, build/target/product/go_defaults.mk)
+
+
 # Boot animation
 TARGET_SCREEN_WIDTH := 720
 TARGET_SCREEN_HEIGHT := 1280
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := osprey
-PRODUCT_NAME := lineage_osprey
-PRODUCT_MODEL := MotoG3
+PRODUCT_NAME := aosp_osprey
 PRODUCT_BRAND := Motorola
 PRODUCT_MANUFACTURER := Motorola
 PRODUCT_RELEASE_NAME := osprey
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+   PRODUCT_MODEL="Moto G 2015"
+
+

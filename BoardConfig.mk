@@ -29,6 +29,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_osprey
 
 # Kernel
 TARGET_KERNEL_CONFIG := osprey_defconfig
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(PWD)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.9/bin/arm-eabi-
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216     # 16384 * 1024 mmcblk0p31
@@ -40,6 +41,17 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 4865261568 # 4751232 * 1024 mmcblk0p42
 
 # Power
 TARGET_POWERHAL_HEADER_PATH := $(DEVICE_PATH)/power
+
+# Dexpreopt
+ifeq ($(HOST_OS),linux)
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+WITH_DEXPREOPT := true
+WITH_DEXPREOPT_DEBUG_INFO := false
+USE_DEX2OAT_DEBUG := false
+DONT_DEXPREOPT_PREBUILTS := true
+WITH_DEXPREOPT_PIC := true
+endif
+endif
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop

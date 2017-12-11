@@ -79,97 +79,97 @@ void vendor_load_properties()
     std::string carrier = GetProperty("ro.boot.carrier","");
 
     if (is2GB()) {
-        property_set("dalvik.vm.heapstartsize", "8m");
-        property_set("dalvik.vm.heapgrowthlimit", "192m");
-        property_set("dalvik.vm.heapsize", "512m");
-        property_set("dalvik.vm.heaptargetutilization", "0.75");
-        property_set("dalvik.vm.heapminfree", "512k");
-        property_set("dalvik.vm.heapmaxfree", "8m");
+        android::init::property_set("dalvik.vm.heapstartsize", "8m");
+        android::init::property_set("dalvik.vm.heapgrowthlimit", "192m");
+        android::init::property_set("dalvik.vm.heapsize", "512m");
+        android::init::property_set("dalvik.vm.heaptargetutilization", "0.75");
+        android::init::property_set("dalvik.vm.heapminfree", "512k");
+        android::init::property_set("dalvik.vm.heapmaxfree", "8m");
         sprintf(gb, "_2gb");
     } else {
-        property_set("dalvik.vm.heapstartsize", "8m");
-        property_set("dalvik.vm.heapgrowthlimit", "96m");
-        property_set("dalvik.vm.heapsize", "256m");
-        property_set("dalvik.vm.heaptargetutilization", "0.75");
-        property_set("dalvik.vm.heapminfree", "2m");
-        property_set("dalvik.vm.heapmaxfree", "8m");
+        android::init::property_set("dalvik.vm.heapstartsize", "8m");
+        android::init::property_set("dalvik.vm.heapgrowthlimit", "96m");
+        android::init::property_set("dalvik.vm.heapsize", "256m");
+        android::init::property_set("dalvik.vm.heaptargetutilization", "0.75");
+        android::init::property_set("dalvik.vm.heapminfree", "2m");
+        android::init::property_set("dalvik.vm.heapmaxfree", "8m");
         gb[0] = 0;
     }
 
-    property_set("ro.gsm.data_retry_config", "default_randomization=2000,max_retries=infinite,1000,1000,80000,125000,485000,905000");
+    android::init::property_set("ro.gsm.data_retry_config", "default_randomization=2000,max_retries=infinite,1000,1000,80000,125000,485000,905000");
 
     if (sku == "XT1540") {
         /* XT1540 */
         sprintf(device, is2GB() ? "osprey_u2" : "osprey_umts");
         sprintf(customerid, "retus");
-        property_set("ro.gsm.data_retry_config", "");
+        android::init::property_set("ro.gsm.data_retry_config", "");
     } else if (sku == "XT1541") {
         /* XT1541 */
         sprintf(device, is2GB() ? "osprey_u2" : "osprey_umts");
         sprintf(customerid, "reteu");
-        property_set("ro.fsg-id", "emea");
-        property_set("persist.radio.process_sups_ind", "0");
+        android::init::property_set("ro.fsg-id", "emea");
+        android::init::property_set("persist.radio.process_sups_ind", "0");
     } else if (sku == "XT1542") {
         /* XT1542 */
         sprintf(device, is2GB() ? "osprey_u2" : "osprey_umts");
         sprintf(customerid, "retla");
-        property_set("persist.radio.all_bc_msg", "all");
-        property_set("persist.radio.process_sups_ind", "1");
+        android::init::property_set("persist.radio.all_bc_msg", "all");
+        android::init::property_set("persist.radio.process_sups_ind", "1");
     } else if (sku == "XT1543" || radio == "0x6") {
         /* XT1543 */
         MSIM = true;
         sprintf(device, is2GB() ? "osprey_ud2" : "osprey_uds");
         sprintf(customerid, "retla");
-        property_set("persist.radio.all_bc_msg", "all");
-        property_set("persist.radio.process_sups_ind", "1");
+        android::init::property_set("persist.radio.all_bc_msg", "all");
+        android::init::property_set("persist.radio.process_sups_ind", "1");
     } else if (sku == "XT1544") {
         /* XT1544 */
         MSIM = true;
         sprintf(device, "osprey_udstv");
         sprintf(customerid, "retbr");
         sprintf(tv, "tv");
-        property_set("persist.radio.all_bc_msg", "all");
-        property_set("persist.radio.process_sups_ind", "1");
+        android::init::property_set("persist.radio.all_bc_msg", "all");
+        android::init::property_set("persist.radio.process_sups_ind", "1");
     } else if (sku == "XT1548") {
         /* XT1548 */
         if (carrier == "sprint") {
             sprintf(customerid, "sprint");
-            property_set("ro.cdma.home.operator.alpha", "Sprint");
-            property_set("ro.cdma.home.operator.numeric", "310120");
-            property_set("ro.fsg-id", "sprint");
+            android::init::property_set("ro.cdma.home.operator.alpha", "Sprint");
+            android::init::property_set("ro.cdma.home.operator.numeric", "310120");
+            android::init::property_set("ro.fsg-id", "sprint");
         } else /*if (carrier == "usc")*/ {
             sprintf(customerid, "usc");
-            property_set("ro.cdma.home.operator.alpha", "U.S. Cellular");
-            property_set("ro.cdma.home.operator.numeric", "311580");
-            property_set("ro.fsg-id", "usc");
+            android::init::property_set("ro.cdma.home.operator.alpha", "U.S. Cellular");
+            android::init::property_set("ro.cdma.home.operator.numeric", "311580");
+            android::init::property_set("ro.fsg-id", "usc");
         }
         sprintf(device, "osprey_cdma");
-        property_set("ro.cdma.data_retry_config", "max_retries=infinite,0,0,10000,10000,100000,10000,10000,10000,10000,140000,540000,960000");
-        property_set("ro.product.locale.region", "US");
-        property_set("gsm.sim.operator.iso-country", "US");
-        property_set("gsm.operator.iso-country", "US");
-        property_set("ril.subscription.types", "NV,RUIM");
-        property_set("ro.telephony.default_cdma_sub", "0");
-        property_set("ro.telephony.default_network", "8");
-        property_set("ro.telephony.get_imsi_from_sim", "true");
-        property_set("telephony.lteOnCdmaDevice", "1");
+        android::init::property_set("ro.cdma.data_retry_config", "max_retries=infinite,0,0,10000,10000,100000,10000,10000,10000,10000,140000,540000,960000");
+        android::init::property_set("ro.product.locale.region", "US");
+        android::init::property_set("gsm.sim.operator.iso-country", "US");
+        android::init::property_set("gsm.operator.iso-country", "US");
+        android::init::property_set("ril.subscription.types", "NV,RUIM");
+        android::init::property_set("ro.telephony.default_cdma_sub", "0");
+        android::init::property_set("ro.telephony.default_network", "8");
+        android::init::property_set("ro.telephony.get_imsi_from_sim", "true");
+        android::init::property_set("telephony.lteOnCdmaDevice", "1");
     } else if (sku == "XT1550") {
         /* XT1550 */
         MSIM = true;
         sprintf(device, is2GB() ? "osprey_ud2" : "osprey_uds");
         sprintf(customerid, "retasia");
-        property_set("ro.fsg-id", "apac");
-        property_set("persist.radio.process_sups_ind", "0");
+        android::init::property_set("ro.fsg-id", "apac");
+        android::init::property_set("persist.radio.process_sups_ind", "0");
     }
 
     if (GetProperty("ro.telephony.default_network", "").empty()) {
-        property_set("ro.telephony.default_network", "9");
+        android::init::property_set("ro.telephony.default_network", "9");
     }
 
     if (MSIM) {
-        property_set("persist.radio.force_get_pref", "1");
-        property_set("persist.radio.multisim.config", "dsds");
-        property_set("ro.telephony.ril.config", "simactivation");
+        android::init::property_set("persist.radio.force_get_pref", "1");
+        android::init::property_set("persist.radio.multisim.config", "dsds");
+        android::init::property_set("ro.telephony.ril.config", "simactivation");
         sprintf(ds, "_ds");
     }
 
@@ -180,5 +180,5 @@ void vendor_load_properties()
     property_override("ro.build.product", device);
     property_override("ro.build.description", description);
     property_override("ro.build.fingerprint", fingerprint);
-    property_set("ro.mot.build.customerid", customerid);
+    android::init::property_set("ro.mot.build.customerid", customerid);
 }
