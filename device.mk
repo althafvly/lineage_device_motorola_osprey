@@ -43,10 +43,3 @@ PRODUCT_PACKAGES += \
     init.target.rc
 
 
-#GAPPS
-GAPPS_VARIANT := pico
-$(call inherit-product-if-exists, vendor/opengapps/build/opengapps-packages.mk)
-
-
-PRODUCT_PACKAGES += PixelLauncher
-PRODUCT_PACKAGES += Dialer
