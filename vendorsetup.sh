@@ -1,1 +1,1 @@
-add_lunch_combo cardinal_osprey-userdebug
+add_lunch_combo lineage_osprey-userdebug
