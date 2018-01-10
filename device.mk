@@ -42,4 +42,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_PACKAGES += \
     init.target.rc
 
+# for off charging mode
+PRODUCT_PACKAGES += \
+    charger_res_images
 
